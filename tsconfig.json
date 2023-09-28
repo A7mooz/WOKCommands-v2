@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "resolveJsonModule": true,
     "target": "esnext",
     "module": "commonjs",
@@ -9,6 +8,8 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true
+  },
+  "include": ["src"]
 }

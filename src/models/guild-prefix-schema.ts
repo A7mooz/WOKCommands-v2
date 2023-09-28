@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import mongoose from 'mongoose';
 
-const guildPrefixSchema = new Schema({
+const guildPrefixSchema = new mongoose.Schema({
   // guild ID
   _id: {
     type: String,
@@ -12,5 +12,5 @@ const guildPrefixSchema = new Schema({
   },
 });
 
-const name = "guild-prefixes";
-export default models[name] || model(name, guildPrefixSchema);
+const name = 'guild-prefixes';
+export default mongoose.models[name] || mongoose.model(name, guildPrefixSchema);

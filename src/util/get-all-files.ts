@@ -3,7 +3,9 @@ import p from 'path';
 
 import { FileData } from '../types';
 
-const getAllFiles = (path: string, foldersOnly = false) => {
+import { pathToFileURL } from 'url';
+
+const getAllFiles = async (path: string, foldersOnly = false) => {
   const files = fs.readdirSync(path, {
     withFileTypes: true,
   });
@@ -19,16 +21,17 @@ const getAllFiles = (path: string, foldersOnly = false) => {
           fileContents: file,
         });
       } else {
-        filesFound = [...filesFound, ...getAllFiles(filePath)];
+        filesFound = [...filesFound, ...(await getAllFiles(filePath))];
       }
       continue;
     }
-    if (!file.name.endsWith('.js') && !file.name.endsWith('.ts')) continue;
+    if (!file.name.endsWith('.js') && !file.name.endsWith('.mjs')) continue;
 
-    const fileContents = require(filePath);
+    const fileContents = await import(`${pathToFileURL(filePath)}`);
     filesFound.push({
       filePath,
-      fileContents: fileContents?.default || fileContents,
+      fileContents:
+        fileContents?.default?.default || fileContents?.default || fileContents,
     });
   }
 

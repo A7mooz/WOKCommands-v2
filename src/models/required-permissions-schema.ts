@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import mongoose from 'mongoose';
 
-const requiredPermissionsSchema = new Schema({
+const requiredPermissionsSchema = new mongoose.Schema({
   // guildId-commandName
   _id: {
     type: String,
@@ -12,5 +12,6 @@ const requiredPermissionsSchema = new Schema({
   },
 });
 
-const name = "required-permissions";
-export default models[name] || model(name, requiredPermissionsSchema);
+const name = 'required-permissions';
+export default mongoose.models[name] ||
+  mongoose.model(name, requiredPermissionsSchema);

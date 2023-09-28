@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import mongoose from 'mongoose';
 
-const disabledCommandSchema = new Schema({
+const disabledCommandSchema = new mongoose.Schema({
   // guildId-commandName
   _id: {
     type: String,
@@ -8,5 +8,6 @@ const disabledCommandSchema = new Schema({
   },
 });
 
-const name = "disabled-commands";
-export default models[name] || model(name, disabledCommandSchema);
+const name = 'disabled-commands';
+export default mongoose.models[name] ||
+  mongoose.model(name, disabledCommandSchema);

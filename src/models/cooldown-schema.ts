@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import mongoose from 'mongoose';
 
-const cooldownSchema = new Schema({
+const cooldownSchema = new mongoose.Schema({
   // The key from Cooldowns.getKey()
   _id: {
     type: String,
@@ -12,5 +12,5 @@ const cooldownSchema = new Schema({
   },
 });
 
-const name = "cooldowns";
-export default models[name] || model(name, cooldownSchema);
+const name = 'cooldowns';
+export default mongoose.models[name] || mongoose.model(name, cooldownSchema);

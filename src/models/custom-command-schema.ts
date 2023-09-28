@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import mongoose from 'mongoose';
 
-const customCommandSchema = new Schema({
+const customCommandSchema = new mongoose.Schema({
   // guildId-commandName
   _id: {
     type: String,
@@ -12,5 +12,6 @@ const customCommandSchema = new Schema({
   },
 });
 
-const name = "custom-commands";
-export default models[name] || model(name, customCommandSchema);
+const name = 'custom-commands';
+export default mongoose.models[name] ||
+  mongoose.model(name, customCommandSchema);
